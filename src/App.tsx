@@ -18,35 +18,97 @@ import {
 } from 'lucide-react';
 import { motion, AnimatePresence } from 'motion/react';
 
-const Navbar = () => (
-  <nav className="flex items-center justify-between px-6 py-4 bg-white sticky top-0 z-50 border-b border-slate-100">
-    <div className="flex items-center gap-2">
-      <div className="w-8 h-8 flex items-center justify-center">
-        <img 
-          src="https://i.imgur.com/096i4IS.png" 
-          alt="Solside Logo" 
-          className="w-full h-full object-contain"
-          referrerPolicy="no-referrer"
-        />
+const Navbar = () => {
+  const [isOpen, setIsOpen] = useState(false);
+
+  const navLinks = [
+    { name: 'Home', href: '#home' },
+    { name: 'How It Works', href: '#how-it-works' },
+    { name: 'Pricing', href: '#pricing' },
+    { name: 'Submit Items', href: '#submit' },
+    { name: 'Contact', href: '#contact' },
+  ];
+
+  return (
+    <nav className="flex items-center justify-between px-6 py-4 bg-white sticky top-0 z-50 border-b border-slate-100">
+      <div className="flex items-center gap-2">
+        <div className="w-8 h-8 flex items-center justify-center">
+          <img 
+            src="https://i.imgur.com/096i4IS.png" 
+            alt="Solside Logo" 
+            className="w-full h-full object-contain"
+            referrerPolicy="no-referrer"
+          />
+        </div>
+        <span className="font-sans font-bold text-lg tracking-tight">Solside Item Rehoming Services</span>
       </div>
-      <span className="font-sans font-bold text-lg tracking-tight">Solside Item Rehoming Services</span>
-    </div>
 
-    {/* Desktop Navigation */}
-    <div className="hidden md:flex items-center gap-8">
-      <a href="#home" className="text-sm font-semibold text-slate-600 hover:text-brand transition-colors">Home</a>
-      <a href="#how-it-works" className="text-sm font-semibold text-slate-600 hover:text-brand transition-colors">How It Works</a>
-      <a href="#pricing" className="text-sm font-semibold text-slate-600 hover:text-brand transition-colors">Pricing</a>
-      <a href="#submit" className="text-sm font-semibold text-slate-600 hover:text-brand transition-colors">Submit Items</a>
-      <a href="#contact" className="text-sm font-semibold text-slate-600 hover:text-brand transition-colors">Contact</a>
-    </div>
+      {/* Desktop Navigation */}
+      <div className="hidden md:flex items-center gap-8">
+        {navLinks.map((link) => (
+          <a 
+            key={link.name}
+            href={link.href} 
+            className="text-sm font-semibold text-slate-600 hover:text-brand transition-colors"
+          >
+            {link.name}
+          </a>
+        ))}
+      </div>
 
-    {/* Mobile Menu Button */}
-    <button className="md:hidden p-2 text-slate-600 hover:bg-slate-100 rounded-lg transition-colors">
-      <Menu size={24} />
-    </button>
-  </nav>
-);
+      {/* Mobile Menu Button */}
+      <button 
+        onClick={() => setIsOpen(!isOpen)}
+        className="md:hidden p-2 text-slate-600 hover:bg-slate-100 rounded-lg transition-colors z-50"
+      >
+        {isOpen ? <X size={24} /> : <Menu size={24} />}
+      </button>
+
+      {/* Mobile Menu Overlay */}
+      <AnimatePresence>
+        {isOpen && (
+          <>
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              onClick={() => setIsOpen(false)}
+              className="fixed inset-0 bg-slate-900/20 backdrop-blur-sm z-40 md:hidden"
+            />
+            <motion.div
+              initial={{ x: '100%' }}
+              animate={{ x: 0 }}
+              exit={{ x: '100%' }}
+              transition={{ type: 'spring', damping: 25, stiffness: 200 }}
+              className="fixed right-0 top-0 bottom-0 w-3/4 max-w-sm bg-white shadow-2xl z-50 md:hidden flex flex-col p-8 pt-24 gap-6"
+            >
+              {navLinks.map((link) => (
+                <a 
+                  key={link.name}
+                  href={link.href} 
+                  onClick={() => setIsOpen(false)}
+                  className="text-xl font-bold text-slate-800 hover:text-brand transition-colors"
+                >
+                  {link.name}
+                </a>
+              ))}
+              <div className="mt-auto pt-8 border-t border-slate-100">
+                <p className="text-sm text-slate-400 font-medium mb-4">Ready to rehome?</p>
+                <a 
+                  href="#contact" 
+                  onClick={() => setIsOpen(false)}
+                  className="block w-full bg-brand text-white text-center py-4 rounded-full font-bold shadow-lg shadow-brand/20"
+                >
+                  Schedule Assessment
+                </a>
+              </div>
+            </motion.div>
+          </>
+        )}
+      </AnimatePresence>
+    </nav>
+  );
+};
 
 const Hero = () => (
   <section id="home" className="px-6 py-12 max-w-4xl mx-auto scroll-mt-20">
@@ -197,8 +259,8 @@ const WhatWeAccept = () => (
         </div>
         <div className="aspect-square rounded-3xl overflow-hidden">
           <img 
-            src="https://images.pexels.com/photos/5602433/pexels-photo-5602433.jpeg?q=80&w=2070&auto=format&fit=crop" 
-            alt="Pile of jewelry" 
+            src="https://images.pexels.com/photos/8105118/pexels-photo-8105118.jpeg?q=80&w=2070&auto=format&fit=crop" 
+            alt="Jewelry and accessories" 
             className="w-full h-full object-cover"
             referrerPolicy="no-referrer"
           />
@@ -564,16 +626,16 @@ export default function App() {
           </div>
           <div>
             <h4 className="font-bold text-slate-800 mb-2">What kinds of items can you help with?</h4>
-            <p>I work with everyday household items in good, clean condition. This includes décor, kitchenware, small appliances, clothing, toys, and small furniture. If you are unsure about something, you are always welcome to send a photo and ask.</p>
+            <p>We work with everyday household items in good, clean condition. This includes décor, kitchenware, small appliances, clothing, toys, and small furniture. If you are unsure about something, you are always welcome to send a photo and ask.</p>
           </div>
           <div>
             <h4 className="font-bold text-slate-800 mb-2">Do you offer pickup?</h4>
-            <p>Yes. I can pick up small to medium sized items. For heavier furniture or large pieces, I can photograph the item, create the listing, communicate with interested parties, and coordinate pickup with the new owner. You do not have to manage the messages or scheduling.</p>
+            <p>Yes. We can pick up small to medium sized items. For heavier furniture or large pieces, we can photograph the item, create the listing, communicate with interested parties, and coordinate pickup with the new owner. You do not have to manage the messages or scheduling.</p>
           </div>
           <div>
             <h4 className="font-bold text-slate-800 mb-2">How does payment work?</h4>
-            <p>For Consignment Service items, you retain ownership and receive a percentage once the item sells. I earn a commission for handling the sale.</p>
-            <p className="mt-2">Selective Free Transfer and Pickup is offered at no cost. Once items are picked up, they become my responsibility to rehome appropriately.</p>
+            <p>For Consignment Service items, you retain ownership and receive a percentage once the item sells. We earn a commission for handling the sale.</p>
+            <p className="mt-2">Selective Free Transfer and Pickup is offered at no cost. Once items are picked up, they become our responsibility to rehome appropriately.</p>
           </div>
           <div>
             <h4 className="font-bold text-slate-800 mb-2">How long does the process take?</h4>
@@ -581,13 +643,13 @@ export default function App() {
           </div>
           <div>
             <h4 className="font-bold text-slate-800 mb-2">What condition should items be in?</h4>
-            <p>Items should be clean and in good working order. If an item doesn’t work for this service, I’ll let you know and share some options.</p>
+            <p>Items should be clean and in good working order. If an item doesn’t work for this service, we'll let you know and share some options.</p>
           </div>
         </div>
       )
     }
   };
-  
+
   return (
     <div className="min-h-screen flex flex-col selection:bg-brand/20 selection:text-brand-dark">
       <Navbar />
@@ -610,4 +672,3 @@ export default function App() {
     </div>
   );
 }
-<ctrl46>}
