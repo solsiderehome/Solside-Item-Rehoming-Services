@@ -314,119 +314,199 @@ const Pricing = () => (
   </section>
 );
 
-const Contact = () => (
-  <section id="contact" className="px-6 py-20 scroll-mt-20">
-    <div className="max-w-4xl mx-auto flex flex-col gap-12">
-      <div className="text-center flex flex-col items-center gap-4">
-        <h2 className="text-3xl">Contact Us</h2>
-        <div className="w-12 h-1 bg-brand rounded-full" />
-      </div>
-      <div className="bg-slate-50 p-8 md:p-12 rounded-[3rem] flex flex-col md:flex-row gap-12">
-        <div className="flex-1 flex flex-col gap-6">
-          <h3 className="text-2xl">Get in Touch</h3>
-          <p className="text-slate-600">Have questions about an item? We're here to help you clear your space responsibly.</p>
-          <div className="flex flex-col gap-4">
-            <div className="flex items-center gap-3 text-slate-700">
-              <div className="w-10 h-10 bg-white rounded-full flex items-center justify-center shadow-sm">
-                <Truck size={20} className="text-brand" />
+const Contact = () => {
+  const [files, setFiles] = React.useState<File[]>([]);
+  const [isSubmitting, setIsSubmitting] = React.useState(false);
+
+  const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    if (e.target.files) {
+      const newFiles = Array.from(e.target.files);
+      setFiles(prev => [...prev, ...newFiles]);
+    }
+  };
+
+  const removeFile = (index: number) => {
+    setFiles(prev => prev.filter((_, i) => i !== index));
+  };
+
+  return (
+    <section id="contact" className="px-6 py-20 scroll-mt-20">
+      <div className="max-w-4xl mx-auto flex flex-col gap-12">
+        <div className="text-center flex flex-col items-center gap-4">
+          <h2 className="text-3xl">Contact Us</h2>
+          <div className="w-12 h-1 bg-brand rounded-full" />
+        </div>
+        <div className="bg-slate-50 p-8 md:p-12 rounded-[3rem] flex flex-col md:flex-row gap-12">
+          <div className="flex-1 flex flex-col gap-6">
+            <h3 className="text-2xl">Get in Touch</h3>
+            <p className="text-slate-600">Have questions about an item? We're here to help you clear your space responsibly.</p>
+            <div className="flex flex-col gap-4">
+              <div className="flex items-center gap-3 text-slate-700">
+                <div className="w-10 h-10 bg-white rounded-full flex items-center justify-center shadow-sm">
+                  <Truck size={20} className="text-brand" />
+                </div>
+                <span>Local Pickup Area: Los Angeles County and Orange County</span>
               </div>
-              <span>Local Pickup Area: Los Angeles County and Orange County</span>
             </div>
           </div>
-        </div>
-        <div className="flex-1 flex flex-col gap-4">
-          <form 
-            onSubmit={async (e) => {
-              e.preventDefault();
-              const form = e.currentTarget;
-              const formData = new FormData(form);
-              
-              const button = form.querySelector('button');
-              if (button) button.disabled = true;
-              
-              try {
-                const response = await fetch('https://formspree.io/f/meerjjoe', {
-                  method: 'POST',
-                  body: formData,
-                  headers: {
-                    'Accept': 'application/json'
+          <div className="flex-1 flex flex-col gap-4">
+            <form 
+              onSubmit={async (e) => {
+                e.preventDefault();
+                setIsSubmitting(true);
+                // 1. Upload images to Cloudinary first if there are any
+                const imageUrls: string[] = [];
+                const cloudName = (import.meta as any).env.VITE_CLOUDINARY_CLOUD_NAME;
+                const uploadPreset = (import.meta as any).env.VITE_CLOUDINARY_UPLOAD_PRESET;
+
+                if (files.length > 0 && cloudName && uploadPreset) {
+                  for (const file of files) {
+                    const uploadData = new FormData();
+                    uploadData.append('file', file);
+                    uploadData.append('upload_preset', uploadPreset);
+
+                    try {
+                      const uploadRes = await fetch(`https://api.cloudinary.com/v1_1/${cloudName}/image/upload`, {
+                        method: 'POST',
+                        body: uploadData,
+                      });
+                      const uploadJson = await uploadRes.json();
+                      if (uploadJson.secure_url) {
+                        imageUrls.push(uploadJson.secure_url);
+                      }
+                    } catch (err) {
+                      console.error('Cloudinary upload error:', err);
+                    }
                   }
-                });
-                
-                if (response.ok) {
-                  alert('Thank you! Your message has been sent.');
-                  form.reset();
-                } else {
-                  alert('Oops! There was a problem sending your message. Please try again.');
                 }
-              } catch (error) {
-                alert('Oops! There was a problem sending your message. Please try again.');
-              } finally {
-                if (button) button.disabled = false;
-              }
-            }}
-            className="flex flex-col gap-4"
-          >
-            <input 
-              name="Name"
-              type="text" 
-              placeholder="Your Name" 
-              required
-              className="px-6 py-4 rounded-2xl border border-slate-200 focus:outline-none focus:ring-2 focus:ring-brand/20 transition-all" 
-            />
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+
+                // 2. Prepare Formspree data
+                const form = e.currentTarget;
+                const formData = new FormData(form);
+                
+                // Remove the raw files from the form data so Formspree doesn't reject them
+                formData.delete('Images');
+                
+                // Add the Cloudinary links as a text field
+                if (imageUrls.length > 0) {
+                  formData.append('Image Links', imageUrls.join('\n'));
+                }
+
+                try {
+                  const response = await fetch('https://formspree.io/f/meerjjoe', {
+                    method: 'POST',
+                    body: formData,
+                    headers: {
+                      'Accept': 'application/json'
+                    }
+                  });
+                  
+                  if (response.ok) {
+                    alert('Thank you! Your message has been sent.');
+                    form.reset();
+                    setFiles([]);
+                  } else {
+                    const errorData = await response.json();
+                    if (errorData.errors) {
+                      alert(errorData.errors.map((e: any) => e.message).join(', '));
+                    } else {
+                      alert('Oops! There was a problem sending your message. Please try again.');
+                    }
+                  }
+                } catch (error) {
+                  alert('Oops! There was a problem sending your message. Please try again.');
+                } finally {
+                  setIsSubmitting(false);
+                }
+              }}
+              className="flex flex-col gap-4"
+            >
               <input 
-                name="Email"
-                type="email" 
-                placeholder="Your Email" 
+                name="Name"
+                type="text" 
+                placeholder="Your Name" 
                 required
                 className="px-6 py-4 rounded-2xl border border-slate-200 focus:outline-none focus:ring-2 focus:ring-brand/20 transition-all" 
               />
-              <input 
-                name="Phone"
-                type="tel" 
-                placeholder="Phone (Optional)" 
-                className="px-6 py-4 rounded-2xl border border-slate-200 focus:outline-none focus:ring-2 focus:ring-brand/20 transition-all" 
-              />
-            </div>
-            <textarea 
-              name="Message"
-              placeholder="How can we help?" 
-              rows={4} 
-              required
-              className="px-6 py-4 rounded-2xl border border-slate-200 focus:outline-none focus:ring-2 focus:ring-brand/20 transition-all resize-none"
-            ></textarea>
-            
-            <div className="flex flex-col gap-2">
-              <label className="text-sm font-semibold text-slate-500 ml-2">Upload Images (Optional)</label>
-              <div className="relative group">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <input 
-                  name="Images"
-                  type="file" 
-                  multiple 
-                  accept="image/*"
-                  className="absolute inset-0 w-full h-full opacity-0 cursor-pointer z-10"
+                  name="Email"
+                  type="email" 
+                  placeholder="Your Email" 
+                  required
+                  className="px-6 py-4 rounded-2xl border border-slate-200 focus:outline-none focus:ring-2 focus:ring-brand/20 transition-all" 
                 />
-                <div className="px-6 py-4 rounded-2xl border-2 border-dashed border-slate-200 group-hover:border-brand/50 transition-all flex items-center justify-center gap-3 bg-white">
-                  <Upload size={20} className="text-slate-400 group-hover:text-brand transition-colors" />
-                  <span className="text-slate-500 group-hover:text-slate-700">Click or drag images to upload</span>
-                </div>
+                <input 
+                  name="Phone"
+                  type="tel" 
+                  placeholder="Phone (Optional)" 
+                  className="px-6 py-4 rounded-2xl border border-slate-200 focus:outline-none focus:ring-2 focus:ring-brand/20 transition-all" 
+                />
               </div>
-              <p className="text-[10px] text-slate-400 ml-2">Max 10MB per image. Formspree may limit total upload size.</p>
-            </div>
+              <textarea 
+                name="Message"
+                placeholder="How can we help?" 
+                rows={4} 
+                required
+                className="px-6 py-4 rounded-2xl border border-slate-200 focus:outline-none focus:ring-2 focus:ring-brand/20 transition-all resize-none"
+              ></textarea>
+              
+              <div className="flex flex-col gap-2">
+                <label className="text-sm font-semibold text-slate-500 ml-2">Upload Images (Optional)</label>
+                <div className="relative group">
+                  <input 
+                    type="file" 
+                    multiple 
+                    accept="image/*"
+                    onChange={handleFileChange}
+                    className="absolute inset-0 w-full h-full opacity-0 cursor-pointer z-10"
+                  />
+                  <div className="px-6 py-4 rounded-2xl border-2 border-dashed border-slate-200 group-hover:border-brand/50 transition-all flex items-center justify-center gap-3 bg-white">
+                    <Upload size={20} className="text-slate-400 group-hover:text-brand transition-colors" />
+                    <span className="text-slate-500 group-hover:text-slate-700">Click or drag images to upload</span>
+                  </div>
+                </div>
 
-            <button 
-              type="submit"
-              className="bg-brand hover:bg-brand-dark text-white px-8 py-4 rounded-full font-bold shadow-lg shadow-brand/20 transition-all disabled:opacity-50 disabled:cursor-not-allowed mt-2"
-            >
-              Send Message
-            </button>
-          </form>
+                {/* File List Preview */}
+                {files.length > 0 && (
+                  <div className="flex flex-wrap gap-2 mt-2">
+                    {files.map((file, index) => (
+                      <div key={index} className="relative group/file bg-white border border-slate-200 rounded-xl p-2 flex items-center gap-2 pr-8">
+                        <div className="w-8 h-8 bg-slate-100 rounded-lg flex items-center justify-center overflow-hidden">
+                          <ImageIcon size={16} className="text-slate-400" />
+                        </div>
+                        <span className="text-xs text-slate-600 truncate max-w-[100px]">{file.name}</span>
+                        <button 
+                          type="button"
+                          onClick={() => removeFile(index)}
+                          className="absolute right-2 top-1/2 -translate-y-1/2 text-slate-400 hover:text-red-500 transition-colors"
+                        >
+                          <X size={14} />
+                        </button>
+                      </div>
+                    ))}
+                  </div>
+                )}
+                
+                <p className="text-[10px] text-slate-400 ml-2">
+                  Max 10MB per image. Images are securely uploaded via Cloudinary.
+                </p>
+              </div>
+
+              <button 
+                type="submit"
+                disabled={isSubmitting}
+                className="bg-brand hover:bg-brand-dark text-white px-8 py-4 rounded-full font-bold shadow-lg shadow-brand/20 transition-all disabled:opacity-50 disabled:cursor-not-allowed mt-2"
+              >
+                {isSubmitting ? 'Sending...' : 'Send Message'}
+              </button>
+            </form>
+          </div>
         </div>
       </div>
-    </div>
-  </section>
-);
+    </section>
+  );
+};
 
 export default function App() {
   const [activeModal, setActiveModal] = useState<string | null>(null);
