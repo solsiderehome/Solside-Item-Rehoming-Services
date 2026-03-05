@@ -49,84 +49,100 @@ const Navbar = () => (
 );
 
 const Hero = () => (
-  <section id="home" className="px-6 py-16 md:py-24 bg-gradient-to-b from-brand/5 to-white">
-    <div className="max-w-6xl mx-auto grid md:grid-cols-2 gap-12 items-center">
-      <div className="flex flex-col gap-8">
-        <div className="inline-flex items-center gap-2 px-4 py-2 bg-brand/10 text-brand rounded-full text-sm font-bold w-fit">
-          <CheckCircle2 size={16} />
-          <span>Trusted Local Rehoming</span>
-        </div>
-        <h1 className="text-5xl md:text-7xl font-bold leading-tight text-slate-900">
-          Effortless rehoming for your <span className="text-brand">quality items.</span>
+  <section id="home" className="px-6 py-12 max-w-4xl mx-auto scroll-mt-20">
+    <motion.div 
+      initial={{ opacity: 0, y: 20 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.6 }}
+      className="flex flex-col gap-8"
+    >
+      <div className="inline-flex items-center gap-2 px-3 py-1 bg-[#e8f5f4] text-[#4eb7ac] rounded-full text-xs font-bold tracking-wider uppercase w-fit">
+        <span className="w-1.5 h-1.5 bg-[#4eb7ac] rounded-full animate-pulse" />
+        Local & Trusted
+      </div>
+
+      <div className="relative aspect-[4/3] rounded-3xl overflow-hidden shadow-2xl shadow-emerald-900/10">
+        <img 
+          src="https://i.imgur.com/PyTg1es.png" 
+          alt="Close up of hands packing ceramic bowls into a box with brown paper" 
+          className="w-full h-full object-cover"
+          referrerPolicy="no-referrer"
+        />
+      </div>
+
+      <div className="flex flex-col gap-4">
+        <span className="text-[#4eb7ac] font-bold text-xs tracking-[0.2em] uppercase">
+          Simplified Decluttering
+        </span>
+        <h1 className="text-4xl md:text-5xl leading-tight">
+          Selective Free Transfer & Pickup
         </h1>
-        <p className="text-xl text-slate-600 leading-relaxed max-w-lg">
-          Simplified decluttering with selective free transfer and pickup. We help your pre-loved items find their next home responsibly.
+        <p className="text-slate-600 text-lg leading-relaxed">
+          Rehome your quality items effortlessly. We offer free pickup for pre-approved items that can be safely carried by a single person.
         </p>
-        <div className="flex flex-col sm:flex-row gap-4">
-          <a href="#submit" className="bg-brand hover:bg-brand-dark text-white px-8 py-4 rounded-full font-bold text-lg shadow-lg shadow-brand/20 transition-all flex items-center justify-center gap-2 group">
-            Submit Items <ArrowRight className="group-hover:translate-x-1 transition-transform" />
-          </a>
-          <a href="#how-it-works" className="bg-white border border-slate-200 hover:border-brand text-slate-700 px-8 py-4 rounded-full font-bold text-lg transition-all flex items-center justify-center">
-            Learn More
-          </a>
-        </div>
       </div>
-      <div className="relative">
-        <div className="aspect-square rounded-[3rem] overflow-hidden shadow-2xl rotate-3 bg-slate-200">
-          <img 
-            src="https://picsum.photos/seed/interior/800/800" 
-            alt="Beautifully organized home" 
-            className="w-full h-full object-cover"
-            referrerPolicy="no-referrer"
-          />
-        </div>
-        <div className="absolute -bottom-6 -left-6 bg-white p-6 rounded-3xl shadow-xl flex items-center gap-4 -rotate-3 border border-slate-100">
-          <div className="w-12 h-12 bg-brand/10 rounded-full flex items-center justify-center">
-            <Truck className="text-brand" />
-          </div>
-          <div>
-            <div className="font-bold text-slate-900">Free Pickup</div>
-            <div className="text-sm text-slate-500">For approved items</div>
-          </div>
-        </div>
+
+      <div className="flex flex-col sm:flex-row gap-4">
+        <a href="#contact" className="bg-brand hover:bg-brand-dark text-white px-8 py-4 rounded-full font-bold shadow-lg shadow-brand/20 transition-all flex items-center justify-center gap-2 group">
+          Schedule an Assessment
+          <ChevronRight size={18} className="group-hover:translate-x-1 transition-transform" />
+        </a>
+        <a href="#how-it-works" className="border-2 border-slate-200 hover:border-slate-300 text-slate-700 px-8 py-4 rounded-full font-bold transition-all flex items-center justify-center">
+          Learn More
+        </a>
       </div>
-    </div>
+    </motion.div>
   </section>
 );
 
-const HowItWorks = () => (
-  <section id="how-it-works" className="px-6 py-20 bg-white">
-    <div className="max-w-6xl mx-auto flex flex-col gap-16">
+const Services = () => (
+  <section id="how-it-works" className="px-6 py-20 bg-slate-50 scroll-mt-20">
+    <div className="max-w-4xl mx-auto flex flex-col gap-12">
       <div className="text-center flex flex-col items-center gap-4">
-        <h2 className="text-4xl font-bold text-slate-900">How It Works</h2>
-        <p className="text-slate-600 max-w-2xl">Three simple steps to rehome your items and clear your space.</p>
-        <div className="w-20 h-1 bg-brand rounded-full" />
+        <h2 className="text-3xl">Our Services</h2>
+        <div className="w-12 h-1 bg-brand rounded-full" />
       </div>
-      
-      <div className="grid md:grid-cols-3 gap-12">
-        {[
-          {
-            step: "01",
-            title: "Submit Photos",
-            desc: "Send us clear photos of the items you'd like to rehome through our simple submission form."
-          },
-          {
-            step: "02",
-            title: "Quick Assessment",
-            desc: "We review your items for quality and rehomeability, then get back to you with a plan."
-          },
-          {
-            step: "03",
-            title: "Easy Pickup",
-            desc: "Once approved, we coordinate a convenient time for free pickup or transfer."
-          }
-        ].map((item, i) => (
-          <div key={i} className="flex flex-col gap-6 p-8 rounded-[2.5rem] bg-slate-50 border border-slate-100 hover:shadow-xl hover:shadow-brand/5 transition-all group">
-            <div className="text-5xl font-bold text-brand/20 group-hover:text-brand/40 transition-colors">{item.step}</div>
-            <h3 className="text-2xl font-bold text-slate-900">{item.title}</h3>
-            <p className="text-slate-600 leading-relaxed">{item.desc}</p>
+
+      <div className="grid gap-8">
+        <motion.div 
+          whileInView={{ opacity: 1, x: 0 }}
+          initial={{ opacity: 0, x: -20 }}
+          viewport={{ once: true }}
+          className="bg-white p-8 rounded-[2.5rem] shadow-sm border border-slate-100 flex flex-col gap-6"
+        >
+          <div className="w-14 h-14 bg-emerald-50 text-brand rounded-2xl flex items-center justify-center">
+            <Truck size={28} />
           </div>
-        ))}
+          <div className="flex flex-col gap-3">
+            <h3 className="text-2xl">Selective Free Transfer & Pickup</h3>
+            <p className="text-slate-600 leading-relaxed">
+              Pre-approved items collected at no cost and responsibly rehomed. Ideal for quality goods you want to clear out without the hassle.
+            </p>
+            <p className="text-brand font-medium">
+              Note: Must be a one-person carry. No heavy furniture or large appliances.
+            </p>
+          </div>
+        </motion.div>
+
+        <motion.div 
+          whileInView={{ opacity: 1, x: 0 }}
+          initial={{ opacity: 0, x: 20 }}
+          viewport={{ once: true }}
+          className="bg-white p-8 rounded-[2.5rem] shadow-sm border border-slate-100 flex flex-col gap-6"
+        >
+          <div className="w-14 h-14 bg-emerald-50 text-brand rounded-2xl flex items-center justify-center">
+            <Tag size={28} />
+          </div>
+          <div className="flex flex-col gap-3">
+            <h3 className="text-2xl">Consignment Service</h3>
+            <p className="text-slate-600 leading-relaxed">
+              Looking to sell? We offer full management of your high-value items including professional photography, multi-channel listing, and secure sales handling.
+            </p>
+            <p className="text-brand font-medium">
+              Earn a percentage of the final proceeds without lifting a finger.
+            </p>
+          </div>
+        </motion.div>
       </div>
 
       <div className="bg-brand/5 rounded-[2.5rem] p-8 md:p-10 border border-brand/10 flex flex-col gap-4 text-center">
@@ -139,13 +155,147 @@ const HowItWorks = () => (
   </section>
 );
 
+const WhatWeAccept = () => (
+  <section id="submit" className="px-6 py-20 scroll-mt-20">
+    <div className="max-w-4xl mx-auto bg-slate-50 rounded-[3rem] p-8 md:p-12 flex flex-col gap-12">
+      <h2 className="text-3xl text-center">What We Accept</h2>
+      
+      <div className="grid gap-8">
+        <div className="flex gap-4">
+          <div className="shrink-0 text-brand mt-1">
+            <CheckCircle2 size={24} />
+          </div>
+          <div className="flex flex-col gap-1">
+            <h4 className="text-xl">One-Person Carry Rule</h4>
+            <p className="text-slate-600">
+              Items must be small enough or light enough to be safely carried by one person from your home to our vehicle.
+            </p>
+          </div>
+        </div>
+
+        <div className="flex gap-4">
+          <div className="shrink-0 text-rose-400 mt-1">
+            <XCircle size={24} />
+          </div>
+          <div className="flex flex-col gap-1">
+            <h4 className="text-xl">Exclusions</h4>
+            <p className="text-slate-600">
+              Due to safety and logistics, we cannot accept heavy furniture (sofas, wardrobes), large appliances, or hazardous materials.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <div className="grid grid-cols-3 gap-4">
+        <div className="aspect-square rounded-3xl overflow-hidden">
+          <img 
+            src="https://images.unsplash.com/photo-1540221652346-e5dd6b50f3e7?q=80&w=2069&auto=format&fit=crop" 
+            alt="Rack of clothes" 
+            className="w-full h-full object-cover"
+            referrerPolicy="no-referrer"
+          />
+        </div>
+        <div className="aspect-square rounded-3xl overflow-hidden">
+          <img 
+            src="https://images.pexels.com/photos/5602433/pexels-photo-5602433.jpeg?q=80&w=2070&auto=format&fit=crop" 
+            alt="Pile of jewelry" 
+            className="w-full h-full object-cover"
+            referrerPolicy="no-referrer"
+          />
+        </div>
+        <div className="aspect-square rounded-3xl overflow-hidden">
+          <img 
+            src="https://images.pexels.com/photos/8903727/pexels-photo-8903727.jpeg" 
+            alt="Plates and kitchenware" 
+            className="w-full h-full object-cover"
+            referrerPolicy="no-referrer"
+          />
+        </div>
+      </div>
+    </div>
+  </section>
+);
+
+const Footer = ({ onOpenModal }: { onOpenModal: (type: string) => void }) => (
+  <footer className="px-6 py-16 flex flex-col items-center gap-12 border-t border-slate-100">
+    <div className="flex flex-col items-center gap-8 text-center max-w-lg">
+      <h2 className="text-3xl">Ready to clear your space?</h2>
+      <p className="text-slate-600 text-lg">Let's find your items a new home.</p>
+      <a href="#contact" className="bg-brand hover:bg-brand-dark text-white px-10 py-5 rounded-full font-bold shadow-xl shadow-brand/30 transition-all">
+        Schedule an Assessment
+      </a>
+      <p className="text-slate-400 text-sm font-medium">
+        Fast assessment • No hidden fees • Eco-friendly rehoming
+      </p>
+    </div>
+
+    <div className="w-full max-w-4xl flex flex-col items-center gap-8 pt-12">
+      <div className="flex items-center gap-2">
+        <div className="w-6 h-6 flex items-center justify-center">
+          <img 
+            src="https://i.imgur.com/096i4IS.png" 
+            alt="Solside Logo" 
+            className="w-full h-full object-contain"
+            referrerPolicy="no-referrer"
+          />
+        </div>
+        <span className="font-sans font-bold text-slate-800">Solside Item Rehoming Services</span>
+      </div>
+
+      <div className="flex flex-wrap justify-center gap-x-8 gap-y-4 text-sm font-medium text-slate-500">
+        <button onClick={() => onOpenModal('privacy')} className="hover:text-brand transition-colors">Privacy Policy</button>
+        <button onClick={() => onOpenModal('terms')} className="hover:text-brand transition-colors">Terms of Service</button>
+        <button onClick={() => onOpenModal('faq')} className="hover:text-brand transition-colors">FAQ</button>
+      </div>
+
+      <p className="text-slate-400 text-xs">
+        © 2026 Solside Item Rehoming Services. All rights reserved.
+      </p>
+    </div>
+  </footer>
+);
+
+const Modal = ({ isOpen, onClose, title, children }: { isOpen: boolean; onClose: () => void; title: string; children: React.ReactNode }) => (
+  <AnimatePresence>
+    {isOpen && (
+      <div className="fixed inset-0 z-[100] flex items-center justify-center p-4 sm:p-6">
+        <motion.div 
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
+          onClick={onClose}
+          className="absolute inset-0 bg-slate-900/60 backdrop-blur-sm"
+        />
+        <motion.div 
+          initial={{ opacity: 0, scale: 0.95, y: 20 }}
+          animate={{ opacity: 1, scale: 1, y: 0 }}
+          exit={{ opacity: 0, scale: 0.95, y: 20 }}
+          className="relative w-full max-w-2xl bg-white rounded-3xl shadow-2xl overflow-hidden flex flex-col max-h-[90vh]"
+        >
+          <div className="flex items-center justify-between px-8 py-6 border-b border-slate-100">
+            <h3 className="text-xl font-bold text-slate-800">{title}</h3>
+            <button 
+              onClick={onClose}
+              className="p-2 hover:bg-slate-100 rounded-full transition-colors text-slate-400 hover:text-slate-600"
+            >
+              <X size={24} />
+            </button>
+          </div>
+          <div className="p-8 overflow-y-auto text-slate-600 leading-relaxed">
+            {children}
+          </div>
+        </motion.div>
+      </div>
+    )}
+  </AnimatePresence>
+);
+
 const Pricing = () => (
-  <section id="pricing" className="px-6 py-20 bg-slate-50">
-    <div className="max-w-6xl mx-auto flex flex-col gap-16">
+  <section id="pricing" className="px-6 py-20 bg-slate-50 scroll-mt-20">
+    <div className="max-w-4xl mx-auto flex flex-col gap-12">
       <div className="text-center flex flex-col items-center gap-4">
-        <h2 className="text-4xl font-bold text-slate-900">Our Services</h2>
-        <p className="text-slate-600 max-w-2xl">Transparent options for every item in your home.</p>
-        <div className="w-20 h-1 bg-brand rounded-full" />
+        <h2 className="text-3xl">Pricing</h2>
+        <div className="w-12 h-1 bg-brand rounded-full" />
       </div>
       <div className="grid md:grid-cols-2 gap-8">
         <div className="bg-white p-8 rounded-[2.5rem] shadow-sm border border-slate-100 flex flex-col gap-4">
@@ -162,65 +312,6 @@ const Pricing = () => (
       </div>
     </div>
   </section>
-);
-
-const Footer = ({ onOpenModal }: { onOpenModal: (type: string) => void }) => (
-  <footer className="bg-white border-t border-slate-100 px-6 py-12">
-    <div className="max-w-6xl mx-auto flex flex-col items-center gap-8">
-      <div className="flex items-center gap-2">
-        <div className="w-8 h-8 flex items-center justify-center">
-          <img 
-            src="https://i.imgur.com/096i4IS.png" 
-            alt="Solside Logo" 
-            className="w-full h-full object-contain"
-            referrerPolicy="no-referrer"
-          />
-        </div>
-        <span className="font-sans font-bold text-slate-800">Solside Item Rehoming Services</span>
-      </div>
-
-      <div className="flex flex-wrap justify-center gap-x-8 gap-y-4 text-sm font-medium text-slate-500">
-        <button onClick={() => onOpenModal('privacy')} className="hover:text-brand transition-colors">Privacy Policy</button>
-        <button onClick={() => onOpenModal('terms')} className="hover:text-brand transition-colors">Terms of Service</button>
-      </div>
-
-      <p className="text-slate-400 text-xs">
-        © 2026 Solside Item Rehoming Services. All rights reserved.
-      </p>
-    </div>
-  </footer>
-);
-
-const Modal = ({ isOpen, onClose, title, children }: { isOpen: boolean, onClose: () => void, title: string, children: React.ReactNode }) => (
-  <AnimatePresence>
-    {isOpen && (
-      <div className="fixed inset-0 z-[100] flex items-center justify-center p-6">
-        <motion.div 
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          exit={{ opacity: 0 }}
-          onClick={onClose}
-          className="absolute inset-0 bg-slate-900/60 backdrop-blur-sm"
-        />
-        <motion.div 
-          initial={{ opacity: 0, scale: 0.95, y: 20 }}
-          animate={{ opacity: 1, scale: 1, y: 0 }}
-          exit={{ opacity: 0, scale: 0.95, y: 20 }}
-          className="relative w-full max-w-2xl bg-white rounded-[2.5rem] shadow-2xl overflow-hidden flex flex-col max-h-[80vh]"
-        >
-          <div className="p-6 border-b border-slate-100 flex items-center justify-between">
-            <h3 className="text-xl font-bold text-slate-900">{title}</h3>
-            <button onClick={onClose} className="p-2 hover:bg-slate-100 rounded-full transition-colors">
-              <X size={20} className="text-slate-500" />
-            </button>
-          </div>
-          <div className="p-8 overflow-y-auto text-slate-600 leading-relaxed">
-            {children}
-          </div>
-        </motion.div>
-      </div>
-    )}
-  </AnimatePresence>
 );
 
 const Contact = () => {
@@ -268,40 +359,56 @@ const Contact = () => {
                 const cloudName = (import.meta as any).env.VITE_CLOUDINARY_CLOUD_NAME;
                 const uploadPreset = (import.meta as any).env.VITE_CLOUDINARY_UPLOAD_PRESET;
 
-                if (files.length > 0 && cloudName && uploadPreset) {
-                  for (const file of files) {
-                    const uploadData = new FormData();
-                    uploadData.append('file', file);
-                    uploadData.append('upload_preset', uploadPreset);
+                try {
+                  if (files.length > 0) {
+                    if (!cloudName || !uploadPreset) {
+                      alert('Cloudinary configuration is missing. Please check your environment variables.');
+                      setIsSubmitting(false);
+                      return;
+                    }
 
-                    try {
+                    // Check file sizes (Max 10MB per image)
+                    const MAX_SIZE = 10 * 1024 * 1024;
+                    const oversizedFiles = files.filter(f => f.size > MAX_SIZE);
+                    if (oversizedFiles.length > 0) {
+                      alert(`Some files are too large: ${oversizedFiles.map(f => f.name).join(', ')}. Max size is 10MB.`);
+                      setIsSubmitting(false);
+                      return;
+                    }
+
+                    // Parallel upload for speed
+                    const uploadPromises = files.map(async (file) => {
+                      const uploadData = new FormData();
+                      uploadData.append('file', file);
+                      uploadData.append('upload_preset', uploadPreset);
+
                       const uploadRes = await fetch(`https://api.cloudinary.com/v1_1/${cloudName}/image/upload`, {
                         method: 'POST',
                         body: uploadData,
                       });
-                      const uploadJson = await uploadRes.json();
-                      if (uploadJson.secure_url) {
-                        imageUrls.push(uploadJson.secure_url);
+                      
+                      if (!uploadRes.ok) {
+                        const errorText = await uploadRes.text();
+                        throw new Error(`Upload failed for ${file.name}: ${errorText}`);
                       }
-                    } catch (err) {
-                      console.error('Cloudinary upload error:', err);
-                    }
+
+                      const uploadJson = await uploadRes.json();
+                      return uploadJson.secure_url;
+                    });
+
+                    const results = await Promise.all(uploadPromises);
+                    imageUrls.push(...results.filter(url => !!url));
                   }
-                }
 
-                // 2. Prepare Formspree data
-                const form = e.currentTarget;
-                const formData = new FormData(form);
-                
-                // Remove the raw files from the form data so Formspree doesn't reject them
-                formData.delete('Images');
-                
-                // Add the Cloudinary links as a text field
-                if (imageUrls.length > 0) {
-                  formData.append('Image Links', imageUrls.join('\n'));
-                }
+                  // 2. Prepare Formspree data
+                  const form = e.currentTarget;
+                  const formData = new FormData(form);
+                  
+                  // Add the Cloudinary links as a text field
+                  if (imageUrls.length > 0) {
+                    formData.append('Submitted_Images', imageUrls.join('\n'));
+                  }
 
-                try {
                   const response = await fetch('https://formspree.io/f/meerjjoe', {
                     method: 'POST',
                     body: formData,
@@ -316,14 +423,11 @@ const Contact = () => {
                     setFiles([]);
                   } else {
                     const errorData = await response.json();
-                    if (errorData.errors) {
-                      alert(errorData.errors.map((e: any) => e.message).join(', '));
-                    } else {
-                      alert('Oops! There was a problem sending your message. Please try again.');
-                    }
+                    alert(errorData.errors ? errorData.errors.map((e: any) => e.message).join(', ') : 'Submission failed.');
                   }
-                } catch (error) {
-                  alert('Oops! There was a problem sending your message. Please try again.');
+                } catch (error: any) {
+                  console.error('Form submission error:', error);
+                  alert(error.message || 'Oops! There was a problem. Please try again.');
                 } finally {
                   setIsSubmitting(false);
                 }
@@ -420,7 +524,7 @@ const Contact = () => {
 export default function App() {
   const [activeModal, setActiveModal] = useState<string | null>(null);
 
-  const modalContent: Record<string, { title: string, content: React.ReactNode }> = {
+  const modalContent: Record<string, { title: string; content: React.ReactNode }> = {
     privacy: {
       title: 'Privacy Policy',
       content: (
@@ -429,9 +533,9 @@ export default function App() {
           <h4 className="font-bold text-slate-800">Information We Collect</h4>
           <p>We collect information you provide directly to us, such as your name, email address, phone, and address when you schedule an assessment or contact us.</p>
           <h4 className="font-bold text-slate-800">How We Use Your Information</h4>
-          <p>We use your information to provide our services, communicate with you about your items, and coordinate pickups. We do not sell your personal information to third parties.</p>
+          <p>We use the information we collect to provide our services, communicate with you about your assessments, and improve our operations.</p>
           <h4 className="font-bold text-slate-800">Data Security</h4>
-          <p>We implement reasonable security measures to protect your personal information from unauthorized access or disclosure.</p>
+          <p>We implement appropriate technical and organizational measures to protect your personal data against unauthorized access or disclosure.</p>
         </div>
       )
     },
@@ -445,72 +549,62 @@ export default function App() {
           <h4 className="font-bold text-slate-800">Item Approval</h4>
           <p>All items must be pre-approved through our assessment process. Items must be in good, rehomeable condition and safely manageable by a single person.</p>
           <h4 className="font-bold text-slate-800">Liability</h4>
-          <p>While we take great care during pickups, we are not liable for any minor damage to property that may occur during the removal of items. Owners are responsible for ensuring a clear path for item removal.</p>
+          <p>While we take every precaution during pickup, Solside is not liable for minor incidental damage to property during the removal process of approved items.</p>
+        </div>
+      )
+    },
+    faq: {
+      title: 'Frequently Asked Questions',
+      content: (
+        <div className="flex flex-col gap-6">
+          <div>
+            <h4 className="font-bold text-slate-800 mb-2">What does “rehoming” mean?</h4>
+            <p>Rehoming means helping your items find a new place where they are wanted and appreciated. Rather than sending them to a landfill, we connect them with someone who can continue using and enjoying them.</p>
+          </div>
+          <div>
+            <h4 className="font-bold text-slate-800 mb-2">What kinds of items can you help with?</h4>
+            <p>I work with everyday household items in good, clean condition. This includes décor, kitchenware, small appliances, clothing, toys, and small furniture. If you are unsure about something, you are always welcome to send a photo and ask.</p>
+          </div>
+          <div>
+            <h4 className="font-bold text-slate-800 mb-2">Do you offer pickup?</h4>
+            <p>Yes. I can pick up small to medium sized items. For heavier furniture or large pieces, I can photograph the item, create the listing, communicate with interested parties, and coordinate pickup with the new owner. You do not have to manage the messages or scheduling.</p>
+          </div>
+          <div>
+            <h4 className="font-bold text-slate-800 mb-2">How does payment work?</h4>
+            <p>For Consignment Service items, you retain ownership and receive a percentage once the item sells. I earn a commission for handling the sale.</p>
+            <p className="mt-2">Selective Free Transfer and Pickup is offered at no cost. Once items are picked up, they become my responsibility to rehome appropriately.</p>
+          </div>
+          <div>
+            <h4 className="font-bold text-slate-800 mb-2">How long does the process take?</h4>
+            <p>Some items find a new home within a few days. Others may take a few weeks. If interest is low, we can adjust the price or explore donation or free pickup options.</p>
+          </div>
+          <div>
+            <h4 className="font-bold text-slate-800 mb-2">What condition should items be in?</h4>
+            <p>Items should be clean and in good working order. If an item doesn’t work for this service, I’ll let you know and share some options.</p>
+          </div>
         </div>
       )
     }
   };
 
   return (
-    <div className="min-h-screen bg-white font-sans text-slate-900 selection:bg-brand/20">
+    <div className="min-h-screen flex flex-col selection:bg-brand/20 selection:text-brand-dark">
       <Navbar />
-      <Hero />
-      <HowItWorks />
-      <Pricing />
-      
-      {/* Item Submission Section */}
-      <section id="submit" className="px-6 py-20 bg-white">
-        <div className="max-w-4xl mx-auto flex flex-col gap-12">
-          <div className="text-center flex flex-col items-center gap-4">
-            <h2 className="text-4xl font-bold">Submit Your Items</h2>
-            <p className="text-slate-600">Ready to clear your space? Send us a few details and photos to get started.</p>
-            <div className="w-20 h-1 bg-brand rounded-full" />
-          </div>
-          
-          <div className="grid md:grid-cols-2 gap-8">
-            <div className="bg-brand/5 p-8 rounded-[2.5rem] border border-brand/10 flex flex-col gap-6">
-              <div className="w-12 h-12 bg-white rounded-2xl flex items-center justify-center shadow-sm">
-                <ImageIcon className="text-brand" />
-              </div>
-              <h3 className="text-2xl font-bold">What to include in photos:</h3>
-              <ul className="flex flex-col gap-4">
-                {[
-                  "Clear, well-lit shots of the full item",
-                  "Close-ups of any wear or unique details",
-                  "Photos of brand labels or markings",
-                  "Multiple angles for larger furniture"
-                ].map((text, i) => (
-                  <li key={i} className="flex items-start gap-3 text-slate-700">
-                    <CheckCircle2 size={18} className="text-brand shrink-0 mt-1" />
-                    <span>{text}</span>
-                  </li>
-                ))}
-              </ul>
-            </div>
-            
-            <div className="bg-slate-900 p-8 rounded-[2.5rem] text-white flex flex-col gap-6 justify-center">
-              <h3 className="text-2xl font-bold">Ready to start?</h3>
-              <p className="text-slate-400 leading-relaxed">
-                Use the contact form below to send your photos and item descriptions. We typically respond within 24-48 hours with an assessment.
-              </p>
-              <div className="flex items-center gap-2 text-brand font-bold">
-                <span>Scroll to form</span>
-                <ChevronRight size={20} />
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <Contact />
+      <main className="flex-grow">
+        <Hero />
+        <Services />
+        <Pricing />
+        <WhatWeAccept />
+        <Contact />
+      </main>
       <Footer onOpenModal={setActiveModal} />
 
       <Modal 
-        isOpen={activeModal !== null} 
-        onClose={() => setActiveModal(null)}
+        isOpen={!!activeModal} 
+        onClose={() => setActiveModal(null)} 
         title={activeModal ? modalContent[activeModal].title : ''}
       >
-        {activeModal ? modalContent[activeModal].content : null}
+        {activeModal && modalContent[activeModal].content}
       </Modal>
     </div>
   );
