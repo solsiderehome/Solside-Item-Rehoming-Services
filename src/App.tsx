@@ -353,11 +353,13 @@ const Contact = () => {
             <form 
               onSubmit={async (e) => {
                 e.preventDefault();
+                const formElement = e.currentTarget; // Capture form reference immediately
                 setIsSubmitting(true);
                 // 1. Upload images to Cloudinary first if there are any
                 const imageUrls: string[] = [];
-                const cloudName = (import.meta as any).env.VITE_CLOUDINARY_CLOUD_NAME;
-                const uploadPreset = (import.meta as any).env.VITE_CLOUDINARY_UPLOAD_PRESET;
+                const env = (import.meta as any).env || {};
+                const cloudName = env.VITE_CLOUDINARY_CLOUD_NAME || (window as any).process?.env?.VITE_CLOUDINARY_CLOUD_NAME;
+                const uploadPreset = env.VITE_CLOUDINARY_UPLOAD_PRESET || (window as any).process?.env?.VITE_CLOUDINARY_UPLOAD_PRESET;
 
                 try {
                   if (files.length > 0) {
@@ -401,8 +403,7 @@ const Contact = () => {
                   }
 
                   // 2. Prepare Formspree data
-                  const form = e.currentTarget;
-                  const formData = new FormData(form);
+                  const formData = new FormData(formElement); // Use the captured reference
                   
                   // Add the Cloudinary links as a text field
                   if (imageUrls.length > 0) {
@@ -419,7 +420,7 @@ const Contact = () => {
                   
                   if (response.ok) {
                     alert('Thank you! Your message has been sent.');
-                    form.reset();
+                    formElement.reset(); // Use the captured reference
                     setFiles([]);
                   } else {
                     const errorData = await response.json();
@@ -586,7 +587,7 @@ export default function App() {
       )
     }
   };
-
+  
   return (
     <div className="min-h-screen flex flex-col selection:bg-brand/20 selection:text-brand-dark">
       <Navbar />
@@ -609,3 +610,4 @@ export default function App() {
     </div>
   );
 }
+<ctrl46>}
