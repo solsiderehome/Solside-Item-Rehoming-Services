@@ -368,7 +368,7 @@ const Pricing = () => (
         <div className="bg-white p-8 rounded-[2.5rem] shadow-sm border border-slate-100 flex flex-col gap-4">
           <h3 className="text-2xl">Consignment</h3>
           <p className="text-slate-600">Full management of high-value items. We handle everything from listing to shipping.</p>
-          <div className="text-lg font-bold text-brand">Commission: 25% of the final sale price</div>
+          <div className="text-lg font-bold text-brand">Commission: 30% of the final sale price</div>
           <p className="text-sm text-slate-400 italic">All details are explained clearly before we begin.</p>
         </div>
       </div>
