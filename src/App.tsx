@@ -488,7 +488,7 @@ const Contact = () => {
                     formData.append('Submitted_Images', imageUrls.join('\n'));
                   }
 
-                  const response = await fetch('https://formspree.io/f/meerjjoe', {
+                  const response = await fetch('https://formspree.io/f/mkoqooly', {
                     method: 'POST',
                     body: formData,
                     headers: {
