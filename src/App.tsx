@@ -159,13 +159,40 @@ const Hero = () => (
 
 const Services = () => (
   <section id="how-it-works" className="px-6 py-20 bg-slate-50 scroll-mt-20">
-    <div className="max-w-4xl mx-auto flex flex-col gap-12">
-      <div className="text-center flex flex-col items-center gap-4">
-        <h2 className="text-3xl">Our Services</h2>
-        <div className="w-12 h-1 bg-brand rounded-full" />
+    <div className="max-w-4xl mx-auto flex flex-col gap-16">
+      {/* Simple Process Steps */}
+      <div className="flex flex-col gap-12">
+        <div className="text-center flex flex-col items-center gap-4">
+          <h2 className="text-3xl">How It Works</h2>
+          <div className="w-12 h-1 bg-brand rounded-full" />
+          <p className="text-slate-500">A simple, stress-free rehoming process.</p>
+        </div>
+        
+        <div className="grid md:grid-cols-2 gap-8 relative">
+          {/* Connector line for desktop */}
+          <div className="hidden md:block absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-1/3 h-px bg-slate-200" />
+          
+          <div className="bg-white p-8 rounded-[2.5rem] shadow-sm border border-slate-100 flex flex-col items-center text-center gap-4 relative z-10">
+            <div className="w-12 h-12 bg-brand text-white rounded-full flex items-center justify-center font-bold text-lg shadow-lg shadow-brand/20">1</div>
+            <h3 className="text-xl font-bold">Send Photos</h3>
+            <p className="text-slate-600">Simply send us a photo or description of the items you want to rehome using the form below.</p>
+          </div>
+          
+          <div className="bg-white p-8 rounded-[2.5rem] shadow-sm border border-slate-100 flex flex-col items-center text-center gap-4 relative z-10">
+            <div className="w-12 h-12 bg-brand text-white rounded-full flex items-center justify-center font-bold text-lg shadow-lg shadow-brand/20">2</div>
+            <h3 className="text-xl font-bold">We Pick Up</h3>
+            <p className="text-slate-600">Once your items are approved, we'll schedule a time to come and pick them up for free.</p>
+          </div>
+        </div>
       </div>
 
-      <div className="grid gap-8">
+      <div className="flex flex-col gap-12">
+        <div className="text-center flex flex-col items-center gap-4">
+          <h2 className="text-2xl">Our Service Options</h2>
+          <div className="w-12 h-1 bg-brand rounded-full" />
+        </div>
+
+        <div className="grid gap-8">
         <motion.div 
           whileInView={{ opacity: 1, x: 0 }}
           initial={{ opacity: 0, x: -20 }}
@@ -214,7 +241,8 @@ const Services = () => (
         </p>
       </div>
     </div>
-  </section>
+  </div>
+</section>
 );
 
 const WhatWeAccept = () => (
