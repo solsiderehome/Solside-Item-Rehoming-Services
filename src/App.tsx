@@ -161,11 +161,8 @@ const Services = () => (
   <section id="how-it-works" className="px-6 py-20 bg-slate-50 scroll-mt-20">
     <div className="max-w-4xl mx-auto flex flex-col gap-12">
       <div className="text-center flex flex-col items-center gap-4">
-        <h2 className="text-3xl">Item Rehoming in Southern California</h2>
+        <h2 className="text-3xl">Our Services</h2>
         <div className="w-12 h-1 bg-brand rounded-full" />
-        <p className="text-slate-500 max-w-2xl">
-          We provide compassionate assistance for families managing the belongings of a loved one, ensuring their items are rehomed with care.
-        </p>
       </div>
 
       <div className="grid gap-8">
