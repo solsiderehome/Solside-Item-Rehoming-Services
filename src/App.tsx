@@ -641,6 +641,10 @@ export default function App() {
             <p>Rehoming means helping your items find a new place where they are wanted and appreciated. Rather than sending them to a landfill, we connect them with someone who can continue using and enjoying them.</p>
           </div>
           <div>
+            <h4 className="font-bold text-slate-800 mb-2">What happens to my items?</h4>
+            <p>Usable items are either sold or donated to local organizations that support schools, seniors, and people with developmental disabilities. Our goal is to keep items out of landfills and help them find a new home.</p>
+          </div>
+          <div>
             <h4 className="font-bold text-slate-800 mb-2">Do you help with estate clearing or family transitions?</h4>
             <p>Yes—whether you are downsizing, clearing an estate, or simply simplifying your life, we cater to these needs by providing a stress-free way to ensure quality belongings are rehomed responsibly.</p>
           </div>
