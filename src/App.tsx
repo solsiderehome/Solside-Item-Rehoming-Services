@@ -608,7 +608,7 @@ export default function App() {
       title: 'Privacy Policy',
       content: (
         <div className="flex flex-col gap-4">
-          <p>At Rehome <span className="text-[#4eb7ac] font-semibold">My Stuff</span>, we take your privacy seriously. This policy describes how we collect, use, and protect your personal information.</p>
+          <p>At Rehome My Stuff, we take your privacy seriously. This policy describes how we collect, use, and protect your personal information.</p>
           <h4 className="font-bold text-slate-800">Information We Collect</h4>
           <p>We collect information you provide directly to us, such as your name, email address, phone, and address when you schedule an assessment or contact us.</p>
           <h4 className="font-bold text-slate-800">How We Use Your Information</h4>
@@ -624,11 +624,11 @@ export default function App() {
         <div className="flex flex-col gap-4">
           <p>By using our services, you agree to the following terms and conditions.</p>
           <h4 className="font-bold text-slate-800">Service Description</h4>
-          <p>Rehome <span className="text-[#4eb7ac] font-semibold">My Stuff</span> provides selective free transfer and pickup for pre-approved quality items. We reserve the right to decline items that do not meet our quality standards or safety requirements.</p>
+          <p>Rehome My Stuff provides selective free transfer and pickup for pre-approved quality items. We reserve the right to decline items that do not meet our quality standards or safety requirements.</p>
           <h4 className="font-bold text-slate-800">Item Approval</h4>
           <p>All items must be pre-approved through our assessment process. Items must be in good, rehomeable condition and safely manageable by a single person.</p>
           <h4 className="font-bold text-slate-800">Liability</h4>
-          <p>While we take every precaution during pickup, Rehome <span className="text-[#4eb7ac] font-semibold">My Stuff</span> is not liable for minor incidental damage to property during the removal process of approved items.</p>
+          <p>While we take every precaution during pickup, Rehome My Stuff is not liable for minor incidental damage to property during the removal process of approved items.</p>
         </div>
       )
     },
@@ -641,25 +641,24 @@ export default function App() {
             <p>Rehoming means helping your items find a new place where they are wanted and appreciated. Rather than sending them to a landfill, we connect them with someone who can continue using and enjoying them.</p>
           </div>
           <div>
-            <h4 className="font-bold text-slate-800 mb-2">What kinds of items can you help with?</h4>
+            <h4 className="font-bold text-slate-800 mb-2">Do you help with estate clearing or family transitions?</h4>
+            <p>Yes- whether you are downsizing, clearing an estate, or simply simplifying your life, we cater to these needs by providing a stress-free way to ensure quality belongings are rehomed responsibly.</p>
+          </div>
+          <div>
+            <h4 className="font-bold text-slate-800 mb-2">What is the "One-Person Carry" rule?</h4>
+            <p>To keep our pickup service free and efficient, items must be small or light enough to be safely carried by one person. This generally includes things like décor, kitchenware, clothing, and small accent furniture.</p>
+          </div>
+          <div>
+            <h4 className="font-bold text-slate-800 mb-2">What kinds of items do you accept?</h4>
             <p>We work with everyday household items in good, clean condition. This includes décor, kitchenware, small appliances, clothing, toys, and small furniture. If you are unsure about something, you are always welcome to send a photo and ask.</p>
           </div>
           <div>
-            <h4 className="font-bold text-slate-800 mb-2">Do you offer pickup?</h4>
-            <p>Yes. We can pick up small to medium sized items. For heavier furniture or large pieces, we can photograph the item, create the listing, communicate with interested parties, and coordinate pickup with the new owner. You do not have to manage the messages or scheduling.</p>
+            <h4 className="font-bold text-slate-800 mb-2">How does the pickup process work?</h4>
+            <p>Once your items are approved via photo, we'll schedule a convenient pickup time.</p>
           </div>
           <div>
             <h4 className="font-bold text-slate-800 mb-2">How does payment work?</h4>
-            <p>For Consignment Service items, you retain ownership and receive a percentage once the item sells. We earn a commission for handling the sale.</p>
-            <p className="mt-2">Selective Free Transfer and Pickup is offered at no cost. Once items are picked up, they become our responsibility to rehome appropriately.</p>
-          </div>
-          <div>
-            <h4 className="font-bold text-slate-800 mb-2">How long does the process take?</h4>
-            <p>Some items find a new home within a few days. Others may take a few weeks. If interest is low, we can adjust the price or explore donation or free pickup options.</p>
-          </div>
-          <div>
-            <h4 className="font-bold text-slate-800 mb-2">What condition should items be in?</h4>
-            <p>Items should be clean and in good working order. If an item doesn’t work for this service, we'll let you know and share some options.</p>
+            <p>For Consignment Service items, you receive a percentage once the item sells. Our Selective Free Transfer and Pickup is offered at no cost; once items are picked up, they become our responsibility to rehome appropriately.</p>
           </div>
         </div>
       )
