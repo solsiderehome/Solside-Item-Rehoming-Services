@@ -188,61 +188,71 @@ const Services = () => (
 
       <div className="flex flex-col gap-12">
         <div className="text-center flex flex-col items-center gap-4">
-          <h2 className="text-2xl">Our Service Options</h2>
+          <h2 className="text-2xl">Our Services</h2>
           <div className="w-12 h-1 bg-brand rounded-full" />
         </div>
 
-        <div className="grid gap-8">
-        <motion.div 
-          whileInView={{ opacity: 1, x: 0 }}
-          initial={{ opacity: 0, x: -20 }}
-          viewport={{ once: true }}
-          className="bg-white p-8 rounded-[2.5rem] shadow-sm border border-slate-100 flex flex-col gap-6"
-        >
-          <div className="w-14 h-14 bg-emerald-50 text-brand rounded-2xl flex items-center justify-center">
-            <Truck size={28} />
-          </div>
-          <div className="flex flex-col gap-3">
-            <h3 className="text-2xl">Selective Free Transfer & Pickup</h3>
-            <p className="text-slate-600 leading-relaxed">
-              Pre-approved items collected at no cost and responsibly rehomed. Ideal for quality goods you want to clear out without the hassle.
-            </p>
-            <p className="text-brand font-medium">
-              Note: Must be a one-person carry. No heavy furniture or large appliances.
-            </p>
-          </div>
-        </motion.div>
+        <div className="flex flex-col gap-8">
+          {/* Primary Service */}
+          <motion.div 
+            whileInView={{ opacity: 1, y: 0 }}
+            initial={{ opacity: 0, y: 20 }}
+            viewport={{ once: true }}
+            className="bg-white p-8 md:p-12 rounded-[3rem] shadow-sm border-2 border-brand/10 flex flex-col md:flex-row gap-8 items-center"
+          >
+            <div className="w-20 h-20 bg-emerald-50 text-brand rounded-3xl flex items-center justify-center shrink-0">
+              <Truck size={40} />
+            </div>
+            <div className="flex flex-col gap-4">
+              <div className="inline-flex px-3 py-1 bg-brand/10 text-brand text-[10px] font-bold uppercase tracking-wider rounded-full w-fit">Primary Service</div>
+              <h3 className="text-3xl font-bold">Selective Free Transfer & Pickup</h3>
+              <p className="text-slate-600 text-lg leading-relaxed">
+                Pre-approved items collected at no cost and responsibly rehomed. This is our most popular option for quality goods you want to clear out without the hassle.
+              </p>
+              <div className="flex items-center gap-2 text-brand font-semibold">
+                <CheckCircle2 size={18} />
+                <span>Must be a one-person carry. No heavy furniture.</span>
+              </div>
+            </div>
+          </motion.div>
 
-        <motion.div 
-          whileInView={{ opacity: 1, x: 0 }}
-          initial={{ opacity: 0, x: 20 }}
-          viewport={{ once: true }}
-          className="bg-white p-8 rounded-[2.5rem] shadow-sm border border-slate-100 flex flex-col gap-6"
-        >
-          <div className="w-14 h-14 bg-emerald-50 text-brand rounded-2xl flex items-center justify-center">
-            <Tag size={28} />
+          {/* Secondary/Optional Service */}
+          <div className="grid md:grid-cols-1 gap-8">
+            <motion.div 
+              whileInView={{ opacity: 1, y: 0 }}
+              initial={{ opacity: 0, y: 20 }}
+              viewport={{ once: true }}
+              className="bg-slate-100/50 p-8 rounded-[2.5rem] border border-slate-200 flex flex-col md:flex-row gap-6 items-start md:items-center"
+            >
+              <div className="w-14 h-14 bg-white text-slate-400 rounded-2xl flex items-center justify-center shrink-0 shadow-sm">
+                <Tag size={28} />
+              </div>
+              <div className="flex flex-col gap-2 flex-1">
+                <div className="flex items-center gap-3">
+                  <h3 className="text-xl font-bold text-slate-700">Optional: Consignment Service</h3>
+                  <span className="text-[10px] font-bold text-slate-400 uppercase tracking-wider bg-slate-200 px-2 py-0.5 rounded">By Request</span>
+                </div>
+                <p className="text-slate-500 leading-relaxed">
+                  For high-value items, we offer full management including professional photography and secure sales handling.
+                </p>
+              </div>
+              <div className="text-right">
+                <p className="text-sm font-bold text-slate-400 uppercase tracking-wider">Commission</p>
+                <p className="text-2xl font-bold text-slate-700">40%</p>
+              </div>
+            </motion.div>
           </div>
-          <div className="flex flex-col gap-3">
-            <h3 className="text-2xl">Consignment Service</h3>
-            <p className="text-slate-600 leading-relaxed">
-              Looking to sell? We offer full management of your high-value items including professional photography, multi-channel listing, and secure sales handling.
-            </p>
-            <p className="text-brand font-medium">
-              Earn a percentage of the final proceeds without lifting a finger.
-            </p>
-          </div>
-        </motion.div>
+        </div>
       </div>
 
       <div className="bg-brand/5 rounded-[2.5rem] p-8 md:p-10 border border-brand/10 flex flex-col gap-4 text-center">
-        <h3 className="text-xl font-bold text-brand-dark">Not sure which items to sell?</h3>
+        <h3 className="text-xl font-bold text-brand-dark">When to choose Consignment?</h3>
         <p className="text-slate-600 leading-relaxed max-w-2xl mx-auto">
-          Items that are clean, in good condition, and valued around <span className="font-bold text-slate-800">$40 or more</span> are a great fit for consignment. Everything else can often be accepted through free pickup. Send a few photos, and we'll help you quickly sort what works best.
+          Items that are clean, in excellent condition, and valued around <span className="font-bold text-slate-800">$40 or more</span> are great candidates for our optional consignment service. Everything else is typically accepted through our primary free pickup service.
         </p>
       </div>
     </div>
-  </div>
-</section>
+  </section>
 );
 
 const WhatWeAccept = () => (
@@ -387,17 +397,30 @@ const Pricing = () => (
         <h2 className="text-3xl">Pricing</h2>
         <div className="w-12 h-1 bg-brand rounded-full" />
       </div>
-      <div className="grid md:grid-cols-2 gap-8">
-        <div className="bg-white p-8 rounded-[2.5rem] shadow-sm border border-slate-100 flex flex-col gap-4">
-          <h3 className="text-2xl">Selective Free Transfer and Pickup</h3>
-          <p className="text-slate-600">For pre-approved items that can be safely carried by one person. No hidden fees, just simple rehoming.</p>
-          <div className="text-3xl font-bold text-brand">Free</div>
+      <div className="flex flex-col gap-8">
+        <div className="bg-white p-8 md:p-12 rounded-[3rem] shadow-sm border-2 border-brand/10 flex flex-col md:flex-row gap-8 items-center">
+          <div className="w-16 h-16 bg-emerald-50 text-brand rounded-2xl flex items-center justify-center shrink-0">
+            <Truck size={32} />
+          </div>
+          <div className="flex-1">
+            <h3 className="text-2xl font-bold mb-2">Selective Free Transfer and Pickup</h3>
+            <p className="text-slate-600 mb-4">Our primary service for pre-approved items that can be safely carried by one person. No hidden fees, just simple rehoming.</p>
+            <div className="text-4xl font-bold text-brand">Free</div>
+          </div>
         </div>
-        <div className="bg-white p-8 rounded-[2.5rem] shadow-sm border border-slate-100 flex flex-col gap-4">
-          <h3 className="text-2xl">Consignment</h3>
-          <p className="text-slate-600">Full management of high-value items. We handle everything from listing to shipping.</p>
-          <div className="text-lg font-bold text-brand">Commission: 40% of the final sale price</div>
-          <p className="text-sm text-slate-400 italic">All details are explained clearly before we begin.</p>
+
+        <div className="bg-slate-100/50 p-8 rounded-[2.5rem] border border-slate-200 flex flex-col md:flex-row gap-6 items-start md:items-center">
+          <div className="w-12 h-12 bg-white text-slate-400 rounded-xl flex items-center justify-center shrink-0 shadow-sm">
+            <Tag size={24} />
+          </div>
+          <div className="flex-1">
+            <h3 className="text-xl font-bold text-slate-700 mb-1">Optional: Consignment</h3>
+            <p className="text-slate-500 text-sm">Full management of high-value items. We handle everything from listing to shipping.</p>
+          </div>
+          <div className="text-right">
+            <p className="text-sm font-bold text-slate-400 uppercase tracking-wider">Commission</p>
+            <p className="text-2xl font-bold text-slate-700">40%</p>
+          </div>
         </div>
       </div>
     </div>
