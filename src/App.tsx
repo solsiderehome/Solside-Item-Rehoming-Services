@@ -34,13 +34,13 @@ const Navbar = () => {
       <div className="flex items-center gap-2">
         <div className="w-8 h-8 flex items-center justify-center">
           <img 
-            src="https://i.imgur.com/096i4IS.png" 
-            alt="Solside Logo" 
+            src="https://i.imgur.com/yW8tkfQ.png" 
+            alt="Rehome My Stuff Logo" 
             className="w-full h-full object-contain"
             referrerPolicy="no-referrer"
           />
         </div>
-        <span className="font-sans font-bold text-lg tracking-tight">Solside Item Rehoming Services</span>
+        <span className="font-sans font-bold text-lg tracking-tight">Rehome <span className="text-[#4eb7ac]">My Stuff</span></span>
       </div>
 
       {/* Desktop Navigation */}
@@ -333,13 +333,13 @@ const Footer = ({ onOpenModal }: { onOpenModal: (type: string) => void }) => (
       <div className="flex items-center gap-2">
         <div className="w-6 h-6 flex items-center justify-center">
           <img 
-            src="https://i.imgur.com/096i4IS.png" 
-            alt="Solside Logo" 
+            src="https://i.imgur.com/yW8tkfQ.png" 
+            alt="Rehome My Stuff Logo" 
             className="w-full h-full object-contain"
             referrerPolicy="no-referrer"
           />
         </div>
-        <span className="font-sans font-bold text-slate-800">Solside Item Rehoming Services</span>
+        <span className="font-sans font-bold text-slate-800">Rehome <span className="text-[#4eb7ac]">My Stuff</span></span>
       </div>
 
       <div className="flex flex-wrap justify-center gap-x-8 gap-y-4 text-sm font-medium text-slate-500">
@@ -349,7 +349,7 @@ const Footer = ({ onOpenModal }: { onOpenModal: (type: string) => void }) => (
       </div>
 
       <p className="text-slate-400 text-xs">
-        © 2026 Solside Item Rehoming Services. All rights reserved.
+        © 2026 Rehome <span className="text-[#4eb7ac]/60">My Stuff</span>. All rights reserved.
       </p>
     </div>
   </footer>
@@ -643,7 +643,7 @@ export default function App() {
       title: 'Privacy Policy',
       content: (
         <div className="flex flex-col gap-4">
-          <p>At Solside Item Rehoming Services, we take your privacy seriously. This policy describes how we collect, use, and protect your personal information.</p>
+          <p>At Rehome <span className="text-[#4eb7ac] font-semibold">My Stuff</span>, we take your privacy seriously. This policy describes how we collect, use, and protect your personal information.</p>
           <h4 className="font-bold text-slate-800">Information We Collect</h4>
           <p>We collect information you provide directly to us, such as your name, email address, phone, and address when you schedule an assessment or contact us.</p>
           <h4 className="font-bold text-slate-800">How We Use Your Information</h4>
@@ -659,11 +659,11 @@ export default function App() {
         <div className="flex flex-col gap-4">
           <p>By using our services, you agree to the following terms and conditions.</p>
           <h4 className="font-bold text-slate-800">Service Description</h4>
-          <p>Solside Item Rehoming Services provides selective free transfer and pickup for pre-approved quality items. We reserve the right to decline items that do not meet our quality standards or safety requirements.</p>
+          <p>Rehome <span className="text-[#4eb7ac] font-semibold">My Stuff</span> provides selective free transfer and pickup for pre-approved quality items. We reserve the right to decline items that do not meet our quality standards or safety requirements.</p>
           <h4 className="font-bold text-slate-800">Item Approval</h4>
           <p>All items must be pre-approved through our assessment process. Items must be in good, rehomeable condition and safely manageable by a single person.</p>
           <h4 className="font-bold text-slate-800">Liability</h4>
-          <p>While we take every precaution during pickup, Solside is not liable for minor incidental damage to property during the removal process of approved items.</p>
+          <p>While we take every precaution during pickup, Rehome <span className="text-[#4eb7ac] font-semibold">My Stuff</span> is not liable for minor incidental damage to property during the removal process of approved items.</p>
         </div>
       )
     },
