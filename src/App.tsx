@@ -139,7 +139,7 @@ const Hero = () => (
           Selective Free Transfer & Pickup
         </h1>
         <p className="text-slate-600 text-lg leading-relaxed">
-          Rehome your quality items effortlessly. We offer selective free pickup for pre-approved items across <span className="font-semibold text-slate-800">Los Angeles County and Orange County</span>.
+          Rehome your quality items effortlessly. We offer selective free pickup for pre-approved items across <span className="font-semibold text-slate-800">Los Angeles County and Orange County, CA</span>—a convenient solution for anyone, and especially helpful if you don't have a car or transportation.
         </p>
       </div>
 
@@ -209,7 +209,7 @@ const Services = () => (
               </div>
               <h3 className="text-3xl font-bold">Selective Free Transfer & Pickup</h3>
               <p className="text-slate-600 text-lg leading-relaxed">
-                Pre-approved items collected at no cost and responsibly rehomed. This is our most popular option for quality goods you want to clear out without the hassle.
+                Pre-approved items collected at no cost and responsibly rehomed. This is our most popular option for quality goods you want to clear out without the hassle—a great choice for anyone looking for convenience, and ideal for those without easy access to transportation.
               </p>
               <div className="flex items-center gap-2 text-brand font-semibold">
                 <CheckCircle2 size={18} />
@@ -423,7 +423,7 @@ const Contact = () => {
                 <div className="w-10 h-10 bg-white rounded-full flex items-center justify-center shadow-sm">
                   <Truck size={20} className="text-brand" />
                 </div>
-                <span>Local Pickup Area: Los Angeles County and Orange County</span>
+                <span>Local Pickup Area: Los Angeles County and Orange County, California</span>
               </div>
             </div>
           </div>
@@ -642,7 +642,7 @@ export default function App() {
           </div>
           <div>
             <h4 className="font-bold text-slate-800 mb-2">Do you help with estate clearing or family transitions?</h4>
-            <p>Yes- whether you are downsizing, clearing an estate, or simply simplifying your life, we cater to these needs by providing a stress-free way to ensure quality belongings are rehomed responsibly.</p>
+            <p>Yes—whether you are downsizing, clearing an estate, or simply simplifying your life, we cater to these needs by providing a stress-free way to ensure quality belongings are rehomed responsibly.</p>
           </div>
           <div>
             <h4 className="font-bold text-slate-800 mb-2">What is the "One-Person Carry" rule?</h4>
