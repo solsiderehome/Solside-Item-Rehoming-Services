@@ -24,7 +24,6 @@ const Navbar = () => {
   const navLinks = [
     { name: 'Home', href: '#home' },
     { name: 'How It Works', href: '#how-it-works' },
-    { name: 'Pricing', href: '#pricing' },
     { name: 'Submit Items', href: '#submit' },
     { name: 'Contact', href: '#contact' },
   ];
@@ -203,8 +202,11 @@ const Services = () => (
             <div className="w-20 h-20 bg-emerald-50 text-brand rounded-3xl flex items-center justify-center shrink-0">
               <Truck size={40} />
             </div>
-            <div className="flex flex-col gap-4">
-              <div className="inline-flex px-3 py-1 bg-brand/10 text-brand text-[10px] font-bold uppercase tracking-wider rounded-full w-fit">Primary Service</div>
+            <div className="flex flex-col gap-4 flex-1">
+              <div className="flex items-center justify-between gap-4">
+                <div className="inline-flex px-3 py-1 bg-brand/10 text-brand text-[10px] font-bold uppercase tracking-wider rounded-full w-fit">Primary Service</div>
+                <div className="text-2xl font-bold text-brand">Free</div>
+              </div>
               <h3 className="text-3xl font-bold">Selective Free Transfer & Pickup</h3>
               <p className="text-slate-600 text-lg leading-relaxed">
                 Pre-approved items collected at no cost and responsibly rehomed. This is our most popular option for quality goods you want to clear out without the hassle.
@@ -349,7 +351,7 @@ const Footer = ({ onOpenModal }: { onOpenModal: (type: string) => void }) => (
       </div>
 
       <p className="text-slate-400 text-xs">
-        © 2026 Rehome <span className="text-[#4eb7ac]/60">My Stuff</span>. All rights reserved.
+        © 2026 Rehome My Stuff. All rights reserved.
       </p>
     </div>
   </footer>
@@ -388,43 +390,6 @@ const Modal = ({ isOpen, onClose, title, children }: { isOpen: boolean; onClose:
       </div>
     )}
   </AnimatePresence>
-);
-
-const Pricing = () => (
-  <section id="pricing" className="px-6 py-20 bg-slate-50 scroll-mt-20">
-    <div className="max-w-4xl mx-auto flex flex-col gap-12">
-      <div className="text-center flex flex-col items-center gap-4">
-        <h2 className="text-3xl">Pricing</h2>
-        <div className="w-12 h-1 bg-brand rounded-full" />
-      </div>
-      <div className="flex flex-col gap-8">
-        <div className="bg-white p-8 md:p-12 rounded-[3rem] shadow-sm border-2 border-brand/10 flex flex-col md:flex-row gap-8 items-center">
-          <div className="w-16 h-16 bg-emerald-50 text-brand rounded-2xl flex items-center justify-center shrink-0">
-            <Truck size={32} />
-          </div>
-          <div className="flex-1">
-            <h3 className="text-2xl font-bold mb-2">Selective Free Transfer and Pickup</h3>
-            <p className="text-slate-600 mb-4">Our primary service for pre-approved items that can be safely carried by one person. No hidden fees, just simple rehoming.</p>
-            <div className="text-4xl font-bold text-brand">Free</div>
-          </div>
-        </div>
-
-        <div className="bg-slate-100/50 p-8 rounded-[2.5rem] border border-slate-200 flex flex-col md:flex-row gap-6 items-start md:items-center">
-          <div className="w-12 h-12 bg-white text-slate-400 rounded-xl flex items-center justify-center shrink-0 shadow-sm">
-            <Tag size={24} />
-          </div>
-          <div className="flex-1">
-            <h3 className="text-xl font-bold text-slate-700 mb-1">Optional: Consignment</h3>
-            <p className="text-slate-500 text-sm">Full management of high-value items. We handle everything from listing to shipping.</p>
-          </div>
-          <div className="text-right">
-            <p className="text-sm font-bold text-slate-400 uppercase tracking-wider">Commission</p>
-            <p className="text-2xl font-bold text-slate-700">40%</p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
 );
 
 const Contact = () => {
@@ -707,7 +672,6 @@ export default function App() {
       <main className="flex-grow">
         <Hero />
         <Services />
-        <Pricing />
         <WhatWeAccept />
         <Contact />
       </main>
