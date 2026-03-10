@@ -250,7 +250,7 @@ const Services = () => (
       <div className="bg-brand/5 rounded-[2.5rem] p-8 md:p-10 border border-brand/10 flex flex-col gap-4 text-center">
         <h3 className="text-xl font-bold text-brand-dark">When to choose Consignment?</h3>
         <p className="text-slate-600 leading-relaxed max-w-2xl mx-auto">
-          Items that are clean, in excellent condition, and valued around <span className="font-bold text-slate-800">$50 or more</span> are great candidates for our optional consignment service. Everything else is typically accepted through our primary free pickup service.
+          Items that are clean, in excellent condition, and valued around <span className="font-bold text-slate-800">$100 or more</span> are great candidates for our optional consignment service. Everything else is typically accepted through our primary free pickup service.
         </p>
       </div>
     </div>
