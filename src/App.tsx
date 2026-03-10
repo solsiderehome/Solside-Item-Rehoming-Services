@@ -139,7 +139,7 @@ const Hero = () => (
           Selective Free Transfer & Pickup
         </h1>
         <p className="text-slate-600 text-lg leading-relaxed">
-          Rehome your quality items effortlessly. We offer selective free pickup for pre-approved items across <span className="font-semibold text-slate-800">Los Angeles County and Orange County, CA</span>—a convenient solution for anyone, and especially helpful if you don't have a car or transportation.
+          Rehome your quality items effortlessly to keep them out of landfills. We offer selective free pickup for pre-approved items across <span className="font-semibold text-slate-800">Los Angeles County and Orange County, CA</span>—a convenient solution for anyone, and especially helpful if you don't have a car or transportation.
         </p>
       </div>
 
