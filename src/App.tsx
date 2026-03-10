@@ -139,7 +139,7 @@ const Hero = () => (
           Selective Free Transfer & Pickup
         </h1>
         <p className="text-slate-600 text-lg leading-relaxed">
-          Rehome your quality items effortlessly to keep them out of landfills. We offer selective free pickup for pre-approved items across <span className="font-semibold text-slate-800">Los Angeles County and Orange County, CA</span>—a convenient solution for anyone, and especially helpful if you don't have a car or transportation.
+          Rehome your quality items effortlessly to keep them out of landfills. We offer selective free pickup for pre-approved items across <span className="font-semibold text-slate-800">most of Los Angeles County and Orange County, CA</span>—a convenient solution for anyone, and especially helpful if you don't have a car or transportation.
         </p>
       </div>
 
@@ -431,7 +431,10 @@ const Contact = () => {
                 <div className="w-10 h-10 bg-white rounded-full flex items-center justify-center shadow-sm">
                   <Truck size={20} className="text-brand" />
                 </div>
-                <span>Local Pickup Area: Los Angeles County and Orange County, California</span>
+                <div className="flex flex-col">
+                  <span className="font-medium">Local Pickup Area: Most of Los Angeles County and Orange County, California</span>
+                  <span className="text-xs text-slate-500">Note: We are currently unable to service the Antelope Valley area (including Lancaster and Palmdale).</span>
+                </div>
               </div>
             </div>
           </div>
