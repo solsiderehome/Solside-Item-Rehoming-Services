@@ -531,6 +531,13 @@ const Contact = () => {
                 required
                 className="px-6 py-4 rounded-2xl border border-slate-200 focus:outline-none focus:ring-2 focus:ring-brand/20 transition-all" 
               />
+              <input 
+                name="Location"
+                type="text" 
+                placeholder="Pickup city or ZIP code" 
+                required
+                className="px-6 py-4 rounded-2xl border border-slate-200 focus:outline-none focus:ring-2 focus:ring-brand/20 transition-all" 
+              />
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <input 
                   name="Email"
